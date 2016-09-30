@@ -33,7 +33,7 @@ namespace Pong_Arena
         }
 
         /*
-         * 
+         * Is called every frame, plays animation + code in Object.Update
          */
         public override void Update(GameTime gameTime)
         {

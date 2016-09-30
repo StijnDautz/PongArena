@@ -12,19 +12,21 @@ namespace Pong_Arena
         private GraphicsDeviceManager graphics;
         private gameStates gameState;
         private SpriteBatch spriteBatch;
+        Viewport viewPort = new Viewport(new Rectangle(0, 0, 1280, 720));
         private List<DynamicObject> listDynamicObject = new List<DynamicObject>();
         private List<Object> listObjects = new List<Object>();
-
+        static float screenwidth = 1280;
+        static float screenheight = 720;
         //Initialize -- Object dimension need to be even numbers
         private Object[] arrayObjectAll =
         {
-            new Object("ball", new Vector2(100, 100), new Vector2(400, 350),38, 40, 3),
+            new Object("ball", new Vector2(100, 100), new Vector2(400, 350),38, 40, 20),
             new Object("paddle1", new Vector2(400, 400), new Vector2(400, 400), 26, 100, 0),
-            new Object("ball", new Vector2(0, 100), new Vector2(400, 350),38, 40, 3f),
-            new Object(new Vector2(-100, 0), 720, 100),
-            new Object(new Vector2(0, -100), 100, 1280),
-            new Object(new Vector2(1280 + 50, 0), 720, 100),
-            new Object(new Vector2(0, 720), 100, 1280),
+            new Object("ball", new Vector2(0, 100), new Vector2(400, 350),38, 40, 14),
+            new Object(new Vector2(-200, -200), (int)screenheight + 400, 200),
+            new Object(new Vector2(-200, -200), 200, (int)screenwidth + 400),
+            new Object(new Vector2(screenwidth, -200), (int)screenheight + 400, 200),
+            new Object(new Vector2(-200, screenheight), 200, (int)screenwidth + 200),
         };
         private DynamicObject[] arrayDynamicObjectAll =
         {
@@ -45,8 +47,8 @@ namespace Pong_Arena
             Content.RootDirectory = "Content";
             graphics = new GraphicsDeviceManager(this);
             gameState = gameStates.INGAME;
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 2560;
+            graphics.PreferredBackBufferHeight = 1440;
 
             //adding Objects and Dynamic Objects to load
             listObjects.Add(arrayObjectAll[0]);

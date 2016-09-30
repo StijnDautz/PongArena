@@ -133,7 +133,7 @@ namespace Pong_Arena
         public virtual void Update(GameTime gameTime)
         {
             //check for collision and check if this should bounce on this Object, if so Bounce
-            int bounceInterval = 100;
+            int bounceInterval = 50;
             elapsedTimeAfterBounce += gameTime.ElapsedGameTime.Milliseconds;
 
             for (int i = 0; i < listBounceObjects.Count; i++)
