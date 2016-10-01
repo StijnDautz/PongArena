@@ -14,12 +14,6 @@ namespace Pong_Arena
         private int player1Lives = 3;
         private int player2Lives = 3;
 
-        
-        
-
-
-
-
         private GraphicsDeviceManager graphics;
         private gameStates gameState;
         private SpriteBatch spriteBatch;
@@ -50,7 +44,7 @@ namespace Pong_Arena
         private Object border3 = new Object(new Vector2(-300, (int)screenheight), 300, (int)screenwidth + 600);
         private Object border4 = new Object(new Vector2((int)screenwidth, 0), (int)screenheight, 300);
 
-        private Object background = new Object("Background", new Vector2(1600/2,900/2) /*WHY DADUQ*/ , Vector2.Zero, 900, 1600, 0f); //WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY??????
+        private Object background = new Object("Background", new Vector2(800, 450), Vector2.Zero, 900, 1600, 0f); //Background maingame
             
         private Object[] arrayObjectAll =
         {
@@ -127,6 +121,32 @@ namespace Pong_Arena
                     Exit();
                     break;
             }
+
+            //Check if ball hits one of the sides of the screen
+            if (ball.CollidesWith(border2))
+            {
+                player1Lives--;
+                switch (player1Lives)
+                {
+                    case 2: { listObjects.Remove(player1star3); break; };
+                    case 1: { listObjects.Remove(player1star2); break; };
+                    case 0: { listObjects.Remove(player1star1); break; };
+                    default: break;
+                }
+            }
+
+            if (ball.CollidesWith(border4))
+            {
+                player2Lives--;
+                switch (player2Lives)
+                {
+                    case 2: { listObjects.Remove(player2star3); break; };
+                    case 1: { listObjects.Remove(player2star2); break; };
+                    case 0: { listObjects.Remove(player2star1); break; };
+                    default: break;
+                }
+            }
+
         }
 
         protected override void Initialize()
