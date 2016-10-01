@@ -17,6 +17,7 @@ namespace Pong_Arena
     {
         protected Texture2D texture;
         protected Vector2 location;
+        protected Vector2 destination;
         protected Vector2 direction;
         protected Vector2 origin;
         protected Rectangle sourceRectangle;
@@ -145,6 +146,8 @@ namespace Pong_Arena
                 }
             }
 
+            //
+            
             //Move this Object
             Move();
         }
@@ -259,6 +262,10 @@ namespace Pong_Arena
         public Rectangle getSourceRectangle() { return sourceRectangle; }
         public Vector2 getOrigin() { return origin; }
         public Vector2 getLocation() { return location; }
+
+        public void setDirection(Vector2 dir) { this.direction = dir; }
+
+        public void setSpeed(float s) { speed = s; }
 
         /*
          * Set
