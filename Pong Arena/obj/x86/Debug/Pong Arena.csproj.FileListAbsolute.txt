@@ -166,3 +166,5 @@ C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\obj\x86\Debug\Pong Arena.pdb
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\Paddle2.png
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\Background.png
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\Star.png
+C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\Player1Scored.png
+C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\Player2Scored.png

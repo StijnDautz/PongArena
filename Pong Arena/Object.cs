@@ -267,6 +267,8 @@ namespace Pong_Arena
 
         public void setSpeed(float s) { speed = s; }
 
+        public void setLocation(Vector2 loc) { location = loc; }
+
         /*
          * Set
          */

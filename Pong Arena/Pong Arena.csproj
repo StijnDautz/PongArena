@@ -77,6 +77,12 @@
     </Content>
     <Content Include="Content\Start.png" />
     <Content Include="Icon.ico" />
+    <Content Include="Content\Player1Scored.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Player2Scored.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
