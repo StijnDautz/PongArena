@@ -65,6 +65,12 @@
     <Content Include="Content\GameOver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GameOver1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GameOver2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\MainMenu.png" />
     <Content Include="Content\Paddle1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

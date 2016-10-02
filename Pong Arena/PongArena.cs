@@ -28,7 +28,7 @@ namespace Pong_Arena
         private static Viewport viewPort = new Viewport(0, 0, screenwidth, screenheight);
 
         //Initialize -- Object dimension need to be even numbers
-        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-100 + rand.Next(100), -50 + rand.Next(100)), 50, 50, 10);
+        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-100 + rand.Next(100), -5 + rand.Next(10)), 50, 50, 10);
         private Object paddle1 = new Object("Paddle1", new Vector2(100, screenheight / 2), Vector2.Zero, 40, 120, 18f);
         private Object paddle2 = new Object("Paddle2", new Vector2(screenwidth - 140, screenheight / 2), Vector2.Zero, 40, 120, 18f);
 
@@ -49,7 +49,8 @@ namespace Pong_Arena
         private Object border4 = new Object(new Vector2((int)screenwidth, 0), (int)screenheight, 500);
 
         private Object background = new Object("Background", new Vector2(backgroundX, backgroundY), Vector2.Zero, 900, 1600, 0f); //Background maingame
-        private Object gameOverBackgound = new Object("GameOver", new Vector2(-10000, 10000), Vector2.Zero, 900, 1600, 0f); //Spawn gameover screen offscreen
+        private Object gameOverBackgound1 = new Object("GameOver1", new Vector2(-10000, 10000), Vector2.Zero, 900, 1600, 0f); //Spawn gameover screen offscreen
+        private Object gameOverBackground2 = new Object("GameOver2", new Vector2(-10000, 10000), Vector2.Zero, 900, 1600, 0f);
 
         /*
         private Object player1scored = new Object("Player1Scored", new Vector2(-600, screenheight / 2), new Vector2(screenwidth, screenheight / 2), 150, 550, 0);
@@ -114,7 +115,8 @@ namespace Pong_Arena
             listObjects.Add(border2);
             listObjects.Add(border3);
             listObjects.Add(border4);
-            listObjects.Add(gameOverBackgound);
+            listObjects.Add(gameOverBackgound1);
+            listObjects.Add(gameOverBackground2);
 
             /*
             listObjects.Add(player1scored);
@@ -329,10 +331,17 @@ namespace Pong_Arena
             ball.Rotate(Math.PI * 0.02); //Rotate the ball
             //perform actions based on input
             InputHandler();
-            if (player1Lives == 0 || player2Lives == 0)
+            if (player2Lives == 0)
             {
-                gameOverBackgound.setLocation(new Vector2(backgroundX, backgroundY));
+                gameOverBackgound1.setLocation(new Vector2(backgroundX, backgroundY));
             }
+            if(player1Lives == 0)
+            {
+                gameOverBackground2.setLocation(new Vector2(backgroundX, backgroundY));
+            }
+
+            
+            
         }
 
         /*************************************************************************************************************************************
@@ -373,6 +382,8 @@ namespace Pong_Arena
             {
                 paddle2.setDirection(new Vector2(0,0));
             }
+
+            if (state.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) && (player1Lives == 0 || player2Lives == 0)) Application.Restart();
         }
     }
 }
