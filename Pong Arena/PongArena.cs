@@ -18,15 +18,17 @@ namespace Pong_Arena
         private gameStates gameState;
         private SpriteBatch spriteBatch;
         private static  Random rand = new Random();
-        Viewport viewPort = new Viewport(new Rectangle(0, 0, 1600, 900));
         private List<DynamicObject> listDynamicObject = new List<DynamicObject>();
         private List<Object> listObjects = new List<Object>();
-        static float screenwidth = 1600;
-        static float screenheight = 900;
+
+        static int screenwidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        static int screenheight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        private static Viewport viewPort = new Viewport(0, 0, screenwidth, screenheight);
+
         //Initialize -- Object dimension need to be even numbers
         private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-200 + rand.Next(400), -200 + rand.Next(400)), 50, 50, 10);
-        private Object paddle1 = new Object("Paddle1", new Vector2(100, (int)screenheight / 2), Vector2.Zero, 40, 120, 10f);
-        private Object paddle2 = new Object("Paddle2", new Vector2((int)screenwidth - 140, (int)screenheight / 2), Vector2.Zero, 40, 120, 10f);
+        private Object paddle1 = new Object("Paddle1", new Vector2(100, screenheight / 2), Vector2.Zero, 40, 120, 10f);
+        private Object paddle2 = new Object("Paddle2", new Vector2(screenwidth - 140, screenheight / 2), Vector2.Zero, 40, 120, 10f);
 
         //Lives
         private Object player1star1 = new Object("Star", new Vector2(40, 2* screenheight / 6), Vector2.Zero, 30, 30, 0);
@@ -79,17 +81,16 @@ namespace Pong_Arena
             graphics = new GraphicsDeviceManager(this);
             
             gameState = gameStates.INGAME;
-            graphics.PreferredBackBufferWidth = (int)screenwidth;
-            graphics.PreferredBackBufferHeight = (int)screenheight;
+            graphics.PreferredBackBufferWidth = screenwidth;
+            graphics.PreferredBackBufferHeight = screenheight;
             
 
             //Borderless
             IntPtr brdrLss = this.Window.Handle;
-            this.Window.Position = new Point((int)((1920 - screenwidth) / 2), (int)((1080 - screenheight) /2));
+            this.Window.Position = new Point(0, 0);
             var control = System.Windows.Forms.Control.FromHandle(brdrLss);
             var form = control.FindForm();
             form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-           
 
             //adding Objects and Dynamic Objects to load
             listObjects.Add(background);

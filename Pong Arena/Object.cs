@@ -72,10 +72,6 @@ namespace Pong_Arena
          */
         public Object(string n, Vector2 loc, Vector2 destination, int h, int w, float s)
         {
-            if (name == null)
-            {
-                Console.Write("Object.name is not initialized");
-            }
             name = n;
             location = loc;
             height = h;
@@ -101,10 +97,6 @@ namespace Pong_Arena
          */
         public Object(string n, Vector2 loc, Vector2 destination, int h, int w, float s, int totalframes, int displayedframe)
         {
-            if (name == null)
-            {
-                Console.Write("Object.name is not initialized");
-            }
             name = n;
             location = loc;
             height = h;
@@ -134,7 +126,7 @@ namespace Pong_Arena
         public virtual void Update(GameTime gameTime)
         {
             //check for collision and check if this should bounce on this Object, if so Bounce
-            int bounceInterval = 50;
+            int bounceInterval = 60;
             elapsedTimeAfterBounce += gameTime.ElapsedGameTime.Milliseconds;
 
             for (int i = 0; i < listBounceObjects.Count; i++)
