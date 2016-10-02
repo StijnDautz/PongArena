@@ -204,4 +204,6 @@ C:\Users\Peter\Documents\PongArena\Pong Arena\obj\x86\Debug\Pong Arena.pdb
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\GameOver.png
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\GameOver1.png
 C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\GameOver2.png
-C:\Users\Jacco Mook\Documents\FinalPong\Pong Arena\bin\Windows\x86\Debug\Content\abilitiesBar.png
+C:\Users\Peter\Documents\PongArena\Pong Arena\bin\Windows\x86\Debug\Content\GameOver.png
+C:\Users\Peter\Documents\PongArena\Pong Arena\bin\Windows\x86\Debug\Content\GameOver1.png
+C:\Users\Peter\Documents\PongArena\Pong Arena\bin\Windows\x86\Debug\Content\GameOver2.png

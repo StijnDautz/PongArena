@@ -126,7 +126,7 @@ namespace Pong_Arena
         public virtual void Update(GameTime gameTime)
         {
             //check for collision and check if this should bounce on this Object, if so Bounce
-            int bounceInterval = 60;
+            int bounceInterval = 40;
             elapsedTimeAfterBounce += gameTime.ElapsedGameTime.Milliseconds;
 
             for (int i = 0; i < listBounceObjects.Count; i++)
@@ -257,11 +257,18 @@ namespace Pong_Arena
 
         public float getSpeed() { return speed; }
         public Vector2 getDirection() { return direction; }
-        public void setDirection(Vector2 dir) { this.direction = dir; }
+        public void setDirection(Vector2 dir) { direction = dir; }
 
         public void setSpeed(float s) { speed = s; }
 
-        public void setLocation(Vector2 loc) { location = loc; }
+        public void setLocation(Vector2 loc)
+        { 
+            location = loc;
+            corners[0] = new Vector2(loc.X, loc.Y);
+            corners[1] = new Vector2(loc.X + width, loc.Y);
+            corners[2] = new Vector2(loc.X + width, loc.Y + height);
+            corners[3] = new Vector2(loc.X, loc.Y + height);
+        }
 
         /*
          * Set

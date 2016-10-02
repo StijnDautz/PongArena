@@ -54,9 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\abilitiesBar.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Background MainMenu.png" />
     <Content Include="Content\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
