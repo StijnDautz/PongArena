@@ -72,7 +72,7 @@ namespace Pong_Arena
         [STAThread]
         static void Main()
         {
-            PongArena game = new PongArena();
+            PongArena game = new PongArena(); 
             game.Run();
         }
 
