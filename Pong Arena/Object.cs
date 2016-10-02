@@ -255,6 +255,8 @@ namespace Pong_Arena
         public Vector2 getOrigin() { return origin; }
         public Vector2 getLocation() { return location; }
 
+        public float getSpeed() { return speed; }
+        public Vector2 getDirection() { return direction; }
         public void setDirection(Vector2 dir) { this.direction = dir; }
 
         public void setSpeed(float s) { speed = s; }

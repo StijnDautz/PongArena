@@ -13,6 +13,8 @@ namespace Pong_Arena
     {
         private int player1Lives = 3;
         private int player2Lives = 3;
+        private static int backgroundX = 800;
+        private static int backgroundY = 450;
 
         private GraphicsDeviceManager graphics;
         private gameStates gameState;
@@ -21,14 +23,14 @@ namespace Pong_Arena
         private List<DynamicObject> listDynamicObject = new List<DynamicObject>();
         private List<Object> listObjects = new List<Object>();
 
-        static int screenwidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        static int screenheight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        static int screenwidth = 1600;
+        static int screenheight = 900;
         private static Viewport viewPort = new Viewport(0, 0, screenwidth, screenheight);
 
         //Initialize -- Object dimension need to be even numbers
-        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-200 + rand.Next(400), -200 + rand.Next(400)), 50, 50, 10);
-        private Object paddle1 = new Object("Paddle1", new Vector2(100, screenheight / 2), Vector2.Zero, 40, 120, 10f);
-        private Object paddle2 = new Object("Paddle2", new Vector2(screenwidth - 140, screenheight / 2), Vector2.Zero, 40, 120, 10f);
+        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-100 + rand.Next(100), -50 + rand.Next(100)), 50, 50, 10);
+        private Object paddle1 = new Object("Paddle1", new Vector2(100, screenheight / 2), Vector2.Zero, 40, 120, 18f);
+        private Object paddle2 = new Object("Paddle2", new Vector2(screenwidth - 140, screenheight / 2), Vector2.Zero, 40, 120, 18f);
 
         //Lives
         private Object player1star1 = new Object("Star", new Vector2(40, 2* screenheight / 6), Vector2.Zero, 30, 30, 0);
@@ -41,16 +43,19 @@ namespace Pong_Arena
 
 
         //Window borders
-        private Object border1 = new Object(new Vector2(-300, -300), 300, (int)screenwidth + 600);
-        private Object border2 = new Object(new Vector2(-300, 0), (int)screenheight, 300);
-        private Object border3 = new Object(new Vector2(-300, (int)screenheight), 300, (int)screenwidth + 600);
-        private Object border4 = new Object(new Vector2((int)screenwidth, 0), (int)screenheight, 300);
+        private Object border1 = new Object(new Vector2(-500, -500), 500, (int)screenwidth + 1000);
+        private Object border2 = new Object(new Vector2(-500, 0), (int)screenheight, 500);
+        private Object border3 = new Object(new Vector2(-500, (int)screenheight), 500, (int)screenwidth + 1000);
+        private Object border4 = new Object(new Vector2((int)screenwidth, 0), (int)screenheight, 500);
 
-        private Object background = new Object("Background", new Vector2(800, 450), Vector2.Zero, 900, 1600, 0f); //Background maingame
+        private Object background = new Object("Background", new Vector2(backgroundX, backgroundY), Vector2.Zero, 900, 1600, 0f); //Background maingame
+        private Object gameOverBackgound = new Object("GameOver", new Vector2(-10000, 10000), Vector2.Zero, 900, 1600, 0f); //Spawn gameover screen offscreen
 
+        /*
         private Object player1scored = new Object("Player1Scored", new Vector2(-600, screenheight / 2), new Vector2(screenwidth, screenheight / 2), 150, 550, 0);
         private Object player2scored = new Object("Player2Scored", new Vector2(-600, screenheight / 2), new Vector2(screenwidth, screenheight / 2), 150, 550, 0);
-            
+        */
+          
         private Object[] arrayObjectAll =
         {
             
@@ -94,6 +99,7 @@ namespace Pong_Arena
 
             //adding Objects and Dynamic Objects to load
             listObjects.Add(background);
+            
             listObjects.Add(player1star1);
             listObjects.Add(player1star2);
             listObjects.Add(player1star3);
@@ -108,10 +114,12 @@ namespace Pong_Arena
             listObjects.Add(border2);
             listObjects.Add(border3);
             listObjects.Add(border4);
+            listObjects.Add(gameOverBackgound);
 
+            /*
             listObjects.Add(player1scored);
             listObjects.Add(player2scored);
-            
+            */
         }
 
         protected override void Update(GameTime gameTime)
@@ -130,37 +138,29 @@ namespace Pong_Arena
                     break;
             }
 
-            //Check if ball hits one of the sides of the screen
-            if (ball.CollidesWith(border2))
-            {
-                player1Lives--;
-                switch (player1Lives)
-                {
-                    case 2: { listObjects.Remove(player1star3); /*listObjects.Remove(ball);*/ listObjects.Add(player2scored); player2scored.setSpeed(5); break; };
-                    case 1: { listObjects.Remove(player1star2); /*listObjects.Remove(ball);*/ player2scored.setLocation(new Vector2(-550, screenheight / 2)); listObjects.Add(player2scored); player2scored.setSpeed(5); break; };
-                    case 0: { listObjects.Remove(player1star1); /*listObjects.Remove(ball);*/ player2scored.setLocation(new Vector2(-550, screenheight / 2)); listObjects.Add(player2scored); player2scored.setSpeed(5); break; };
-                    default: break;
-                }
-            }
+            
 
+            
+            
+            
+            
+/*
             //During point screen
-            if (player1scored.getLocation().X > screenwidth) { listObjects.Remove(player1scored); /*listObjects.Add(ball);*/ }
-            if (player2scored.getLocation().X > screenwidth) { listObjects.Remove(player2scored); /*listObjects.Add(ball);*/ }
-
-            if (ball.CollidesWith(border4))
+            if (player1scored.getLocation().X > screenwidth + 550)
             {
-                player2Lives--;
-                switch (player2Lives)
-                {
-                    case 2: { listObjects.Remove(player2star3); listObjects.Remove(ball); listObjects.Add(player1scored); player1scored.setSpeed(5); break; };
-                    case 1: { listObjects.Remove(player2star2); listObjects.Remove(ball); player1scored.setLocation(new Vector2(-550, screenheight / 2)); listObjects.Add(player1scored); player1scored.setSpeed(5); break; };
-                    case 0: { listObjects.Remove(player2star1); listObjects.Remove(ball); player1scored.setLocation(new Vector2(-550, screenheight / 2)); listObjects.Add(player1scored); player1scored.setSpeed(5); break; };
-                    default: break;
-                }
+                listObjects.Remove(player1scored);
+                
             }
+            if (player2scored.getLocation().X > screenwidth + 500)
+            {
+                listObjects.Remove(player2scored);
+                
 
+            }
+*/
         }
 
+        
         protected override void Initialize()
         {
             base.Initialize();
@@ -220,6 +220,12 @@ namespace Pong_Arena
 
         }
 
+        private void GameStateGameOver()
+        {
+                       
+            InputHandler();
+        }
+
         private void GameStateInGame(GameTime gameTime)
         {
             ///Loop through animList and check if enough time has passed to update to the next frame
@@ -231,11 +237,102 @@ namespace Pong_Arena
             {
                 listObjects[i].Update(gameTime);
             }
+            //Check if ball hits one of the sides of the screen
+            if (ball.CollidesWith(border2)) //Left border
+            {
+                //ball.setLocation(new Vector2(screenwidth / 2, screenheight / 2));
+                //player2scored.setSpeed(5);
+                player1Lives--;
+                switch (player1Lives)
+                {
 
-            
+                    case 2:
+                        {
+                            listObjects.Remove(player1star3);
+                            //listObjects.Add(player2scored);
+                            break;
+                        };
+                    case 1:
+                        {
+                            listObjects.Remove(player1star2);
+                            //player2scored.setLocation(new Vector2(-550, screenheight / 2));
+
+                            //listObjects.Add(player2scored);
+                            break;
+                        };
+                    case 0:
+                        {
+                            listObjects.Remove(player1star1);
+                            //player2scored.setLocation(new Vector2(-550, screenheight / 2));
+                            //listObjects.Add(player2scored);
+                            break;
+                        };
+                    default: break;
+                }
+            }
+
+            if (ball.CollidesWith(border4)) //Right border
+            {
+                //ball.setLocation(new Vector2(screenwidth / 2, screenheight / 2));
+                //player1scored.setSpeed(5);
+                player2Lives--;
+                switch (player2Lives)
+                {
+                    case 2:
+                        {
+                            listObjects.Remove(player2star3);
+                            //listObjects.Add(player1scored);
+                            break;
+                        };
+                    case 1:
+                        {
+                            listObjects.Remove(player2star2);
+                            //player1scored.setLocation(new Vector2(-550, screenheight / 2));
+                            //listObjects.Add(player1scored);
+                            break;
+                        };
+                    case 0:
+                        {
+                            listObjects.Remove(player2star1);
+                            //player1scored.setLocation(new Vector2(-550, screenheight / 2));
+                            //listObjects.Add(player1scored);
+                            break;
+                        };
+                    default: break;
+                }
+            }
+
+            //Increase angle based on position hit on paddle AND handle speedup
+            if(ball.CollidesWith(paddle1))
+            {
+                Vector2 newDir = new Vector2(0, (ball.getOrigin().Y + ball.getLocation().Y - (paddle1.getOrigin().Y + paddle1.getLocation().Y)) / 2000);
+                newDir.Normalize();
+                newDir += ball.getDirection();
+                newDir.Normalize();
+                ball.setDirection(newDir);
+                if (ball.getDirection().Y > 1) ball.setDirection(new Vector2(ball.getDirection().X, 1)); //set limit
+                if (ball.getDirection().Y < -1) ball.setDirection(new Vector2(ball.getDirection().X, -1));
+                ball.setSpeed(ball.getSpeed() + 1f);
+            }
+            if (ball.CollidesWith(paddle2))
+            {
+                Vector2 newDir = new Vector2(0, (ball.getOrigin().Y + ball.getLocation().Y - (paddle2.getOrigin().Y + paddle1.getLocation().Y)) / 1200);
+                if(newDir.Y > 1) newDir.Normalize();
+                newDir += ball.getDirection();
+                newDir.Normalize();
+                ball.setDirection(newDir);
+                if (ball.getDirection().Y > 1) ball.setDirection(new Vector2(ball.getDirection().X, 1)); //set limit
+                if (ball.getDirection().Y < -1) ball.setDirection(new Vector2(ball.getDirection().X, -1));
+                ball.setSpeed(ball.getSpeed() + 1f);
+            }
+
             ball.Rotate(Math.PI * 0.02); //Rotate the ball
             //perform actions based on input
             InputHandler();
+            if (player1Lives == 0 || player2Lives == 0)
+            {
+                gameOverBackgound.setLocation(new Vector2(backgroundX, backgroundY));
+            }
         }
 
         /*************************************************************************************************************************************
