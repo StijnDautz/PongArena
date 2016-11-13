@@ -26,8 +26,8 @@ namespace Pong_Arena
         private static Viewport viewPort = new Viewport(0, 0, screenwidth, screenheight);
 
         //Initialize -- Object dimension need to be even numbers
-        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(-100 + rand.Next(100), -5 + rand.Next(10)), 50, 50, ballSpeed);
-        private Object paddle1 = new Object("Paddle1", new Vector2(100, screenheight / 2), Vector2.Zero, 40, 120, 18f);
+        private Object ball = new Object("ball", new Vector2(screenwidth / 2, screenheight / 2), new Vector2(rand.Next(screenwidth), rand.Next(screenheight)), 50, 50, ballSpeed);
+        private Object paddle1 = new Object("Paddle1", new Vector2(140, screenheight / 2), Vector2.Zero, 40, 120, 18f);
         private Object paddle2 = new Object("Paddle2", new Vector2(screenwidth - 140, screenheight / 2), Vector2.Zero, 40, 120, 18f);
 
         //Lives
@@ -45,14 +45,10 @@ namespace Pong_Arena
         private Object border3 = new Object(new Vector2(-500, (int)screenheight), 500, (int)screenwidth + 1000);
         private Object border4 = new Object(new Vector2((int)screenwidth, 0), (int)screenheight, 500);
 
+        private Object MainMenuBackground = new Object("Background MainMenu", backGroundLocation, Vector2.Zero, 1080, 1920, 0f); //main menu background
         private Object background = new Object("Background", new Vector2(800, 450), Vector2.Zero, 900, 1600, 0f); //Background maingame
         private Object gameOverBackgound1 = new Object("GameOver1", backGroundLocation, Vector2.Zero, 900, 1600, 0f); //Spawn gameover screen offscreen
         private Object gameOverBackground2 = new Object("GameOver2", backGroundLocation, Vector2.Zero, 900, 1600, 0f);
-
-        /*
-        private Object player1scored = new Object("Player1Scored", new Vector2(-600, screenheight / 2), new Vector2(screenwidth, screenheight / 2), 150, 550, 0);
-        private Object player2scored = new Object("Player2Scored", new Vector2(-600, screenheight / 2), new Vector2(screenwidth, screenheight / 2), 150, 550, 0);
-        */
 
         private enum gameStates { INIT, START, INGAME, GAMEOVER, QUIT };
 
@@ -184,10 +180,10 @@ namespace Pong_Arena
                     listObjects.Add(background);
                     listObjects.Add(gameOverBackgound1);
                     listObjects.Add(gameOverBackground2);
+                    listObjects.Add(MainMenuBackground);
                     break;
                 case gameStates.START:
-                    listObjects.Add(background);
-
+                    listObjects.Add(MainMenuBackground);
                     break;
                 case gameStates.INGAME:
                     listObjects.Add(background);
@@ -206,8 +202,14 @@ namespace Pong_Arena
                     listObjects.Add(border4);
                     break;
                 case gameStates.GAMEOVER:
-                    listObjects.Add(gameOverBackgound1);
-                    listObjects.Add(gameOverBackground2);
+                    if(player1Lives < 1)
+                    {
+                        listObjects.Add(gameOverBackground2);
+                    }
+                    else
+                    {
+                        listObjects.Add(gameOverBackgound1);
+                    }
                     break;
                 case gameStates.QUIT:
                     Exit();
